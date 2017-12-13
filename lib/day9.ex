@@ -11,7 +11,7 @@ defmodule Day9 do
     |> elem(1)
   end
 
-  defp score_line("", _level, score, in_garbage, garbage_count), do: { score, garbage_count }
+  defp score_line("", _level, score, _in_garbage, garbage_count), do: { score, garbage_count }
   defp score_line("!" <> <<_::binary-size(1), rest::binary>>, level, score, in_garbage, garbage_count), do: score_line(rest, level, score, in_garbage, garbage_count)
   defp score_line("<" <> rest, level, score, false, garbage_count), do: score_line(rest, level, score, true, garbage_count)
   defp score_line(">" <> rest, level, score, true, garbage_count), do: score_line(rest, level, score, false, garbage_count)
