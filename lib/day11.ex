@@ -3,7 +3,7 @@ defmodule Day11 do
 
   def part1(input) do
     input
-    |> String.strip()
+    |> String.trim()
     |> String.split(",")
     |> Enum.reduce(new({0, 0}), &transform/2)
     |> Map.get(:current_distance)
@@ -11,7 +11,7 @@ defmodule Day11 do
 
   def part2(input) do
     input
-    |> String.strip()
+    |> String.trim()
     |> String.split(",")
     |> Enum.reduce(new({0, 0}), &transform/2)
     |> Map.get(:max_distance)

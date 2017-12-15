@@ -8,11 +8,7 @@ defmodule Day10 do
     |> Enum.reduce(1, &Kernel.*/2)
   end
 
-  @length_padding <<17, 31, 73, 47, 23>>
-
   def part2(input) do
-    input
-    |> Kernel.<>(@length_padding)
-    |> KnotHash.hash()
+    KnotHash.hash(input)
   end
 end

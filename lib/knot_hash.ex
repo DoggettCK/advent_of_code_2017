@@ -1,6 +1,8 @@
 defmodule KnotHash do
   use Bitwise
 
+  @length_padding <<17, 31, 73, 47, 23>>
+
   defstruct list: [], current: 0, list_length: 256, skip_size: 0
 
   def new(list_length \\ 256), do: %KnotHash{ list: Enum.to_list(0..(list_length-1)), list_length: list_length }
@@ -30,8 +32,8 @@ defmodule KnotHash do
   defp do_twist(list, stack, 0), do: stack ++ list
   defp do_twist([h | t], stack, skip), do: do_twist(t, [h | stack], skip - 1)
 
-  def hash(string) when is_binary(string), do: hash(KnotHash.new, string |> to_charlist)
-  def hash(%KnotHash{} = knot_hash, lengths) do
+  def hash(string) when is_binary(string), do: do_hash(KnotHash.new, string <> @length_padding |> to_charlist)
+  defp do_hash(%KnotHash{} = knot_hash, lengths) do
     %KnotHash{ list: sparse_hash } = do_hash_rounds(knot_hash, lengths, 64)
 
     sparse_hash

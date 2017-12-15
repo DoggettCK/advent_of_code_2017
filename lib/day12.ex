@@ -17,7 +17,7 @@ defmodule Day12 do
 
   def parse(input) do
     input
-    |> String.strip()
+    |> String.trim()
     |> String.split("\n")
     |> Enum.map(&parse_line/1)
     |> Enum.reduce(:digraph.new, &add_vert_and_neighbors/2)
@@ -38,7 +38,7 @@ defmodule Day12 do
 
   defp parse_line(line) do
     [h | t] = line
-              |> String.strip()
+              |> String.trim()
               |> String.replace(" <-> ", ", ")
               |> String.split(", ")
               |> Enum.map(&String.to_integer/1)

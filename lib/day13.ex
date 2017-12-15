@@ -31,7 +31,7 @@ defmodule Firewall do
   def new(input) do
     %Firewall{
       layers: input
-      |> String.strip()
+      |> String.trim()
       |> String.split("\n")
       |> Enum.map(&parse_line/1)
     }
@@ -52,7 +52,7 @@ defmodule Firewall do
 
   defp parse_line(line) do
     [depth, range] = line
-                     |> String.strip()
+                     |> String.trim()
                      |> String.split(": ")
                      |> Enum.map(&String.to_integer/1)
 

@@ -22,10 +22,10 @@ defmodule Day13Test do
       4: 4
       6: 4}) == 10
 
-    # Test on actual input takes ~33s
-     actual = "test/fixtures/day13_input"
-              |> File.read!()
-              |> Day13.part2()
-     assert actual == 3840052
+      # Test on actual input takes ~33s
+      #actual = "test/fixtures/day13_input"
+      #|> File.read!()
+      #|> Day13.part2()
+      #assert actual == 3840052
   end
 end
