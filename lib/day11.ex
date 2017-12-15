@@ -5,7 +5,7 @@ defmodule Day11 do
     input
     |> String.strip()
     |> String.split(",")
-    |> Enum.reduce(build({0, 0}), &transform/2)
+    |> Enum.reduce(new({0, 0}), &transform/2)
     |> Map.get(:current_distance)
   end
 
@@ -13,11 +13,11 @@ defmodule Day11 do
     input
     |> String.strip()
     |> String.split(",")
-    |> Enum.reduce(build({0, 0}), &transform/2)
+    |> Enum.reduce(new({0, 0}), &transform/2)
     |> Map.get(:max_distance)
   end
 
-  defp build({ x, y }), do: %Day11{ x: x, y: y } |> update_distances()
+  defp new({ x, y }), do: %Day11{ x: x, y: y } |> update_distances()
 
   defp transform("n", %Day11{x: x, y: y} = d), do: %Day11{d | x: x, y: y+1} |> update_distances()
   defp transform("s", %Day11{x: x, y: y} = d), do: %Day11{d | x: x, y: y-1} |> update_distances()

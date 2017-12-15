@@ -17,7 +17,7 @@ defmodule Day7 do
     |> String.trim()
     |> String.split("\n")
     |> Enum.map(&parse_line/1)
-    |> Tree.build()
+    |> Tree.new()
   end
 
   defp parse_line(line) do

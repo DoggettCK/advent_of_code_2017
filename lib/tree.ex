@@ -1,7 +1,7 @@
 defmodule Tree do
   defstruct tree: :digraph.new, weights: %{}, root: nil
 
-  def build(library) do
+  def new(library) do
     weights = Enum.into(library, %{}, fn {l, w, _} -> {l, w} end)
     tree = library
             |> Enum.into(Keyword.new, fn {l, _, d} -> {l, d} end)
@@ -16,7 +16,7 @@ defmodule Tree do
                   |> Enum.map(fn v -> {v, total_weight(weights, [v]), total_weight(weights, [v] ++ children(tree, v))} end)
                   |> Enum.group_by(fn {_, _, w} -> w end)
 
-    {vert, weight, weight_with_kids} = kid_weights |> Enum.filter(fn {_, [_]} -> true; _ -> false end) |> Enum.map(fn {_, vert} -> vert end) |> hd |> hd
+    {_vert, weight, weight_with_kids} = kid_weights |> Enum.filter(fn {_, [_]} -> true; _ -> false end) |> Enum.map(fn {_, vert} -> vert end) |> hd |> hd
     ideal_weight = kid_weights |> Enum.filter(fn {_, [_]} -> false; _ -> true end) |> Enum.map(fn {weight, _} -> weight end) |> hd
 
     if weight_with_kids > ideal_weight do
@@ -34,7 +34,7 @@ defmodule Tree do
     do_subtree(tree, children(tree, vert), [vert])
   end
 
-  defp do_subtree(tree, [], results), do: results
+  defp do_subtree(_tree, [], results), do: results
   defp do_subtree(tree, [h | t], results) do
     do_subtree(tree, t, [h | do_subtree(tree, children(tree, h), results)])
   end
