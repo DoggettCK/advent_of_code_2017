@@ -1,5 +1,5 @@
 defmodule Tree do
-  defstruct tree: :digraph.new, weights: %{}, root: nil
+  defstruct tree: nil, weights: %{}, root: nil
 
   def new(library) do
     weights = Enum.into(library, %{}, fn {l, w, _} -> {l, w} end)
