@@ -26,9 +26,25 @@ defmodule Day18Test do
     assert actual == 3423
   end
 
-  test "Day 18, Part 2" do
-    #assert Day18.part2(3) == 1222153
-    #assert Day18.part2(382) == 33454823
+  test "Day 18, Part 2a" do
+    input = ~S{
+      snd 1
+      snd 2
+      snd p
+      rcv a
+      rcv b
+      rcv c
+      rcv d
+    }
+
+    assert Day18.part2(input) == 3
+  end
+
+  test "Day 18, Part 2b" do
+    actual = "test/fixtures/day18_input"
+             |> File.read!()
+             |> Day18.part2()
+    assert actual == 7493
   end
 end
 

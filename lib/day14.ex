@@ -49,7 +49,6 @@ defmodule Day14 do
   end
 
   defp used?(graph_tuple, {x, y}) do
-    #{x, y} |> IO.inspect
     graph_tuple |> elem(y) |> elem(x) |> Kernel.==(1)
   end
 
