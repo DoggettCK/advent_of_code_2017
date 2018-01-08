@@ -49,7 +49,7 @@ defmodule Day3 do
     process_part2(%{:bounds => {0, 0, 0, 0}, :last => 1, {0, 0} => 1}, %Robot{facing: :right, position: {1, 0}}, number)
   end
 
-  defp process_part2(%{last: last} = board, %Robot{} = robot, until) when last > until, do: last
+  defp process_part2(%{last: last}, %Robot{}, until) when last > until, do: last
   defp process_part2(%{bounds: {min_x, min_y, max_x, max_y}} = board, %Robot{facing: :right, position: {x, _}} = robot, until) when x == (max_x + 1) do
     turn_and_process_part2(board, robot, until, {min_x, min_y, x, max_y})
   end
@@ -62,7 +62,7 @@ defmodule Day3 do
   defp process_part2(%{bounds: {min_x, min_y, max_x, max_y}} = board, %Robot{facing: :down, position: {_, y}} = robot, until) when y == (max_y + 1) do
     turn_and_process_part2(board, robot, until, {min_x, min_y, max_x, y})
   end
-  defp process_part2(%{last: last} = board, %Robot{position: position} = robot, until) do
+  defp process_part2(%{} = board, %Robot{position: position} = robot, until) do
     neighbor_sum = robot
                    |> Robot.neighbors()
                    |> Enum.map(fn neighbor -> Map.get(board, neighbor) end)
@@ -80,7 +80,7 @@ defmodule Day3 do
 
   end
 
-  defp turn_and_process_part2(%{last: last} = board, %Robot{position: position} = robot, until, new_bounds) do
+  defp turn_and_process_part2(%{} = board, %Robot{position: position} = robot, until, new_bounds) do
     neighbor_sum = robot
                    |> Robot.neighbors()
                    |> Enum.map(fn neighbor -> Map.get(board, neighbor) end)
