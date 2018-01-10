@@ -8,8 +8,11 @@ defmodule Day7 do
   end
 
   def part2(file_contents) do
-    file_contents
-    |> parse()
+    {_, _, _, correct_weight, _} = file_contents
+                                   |> parse()
+                                   |> Tree.find_uneven_node()
+
+    correct_weight
   end
 
   def parse(file_contents) do
